@@ -1,0 +1,93 @@
+.mBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #EAEBEF;
+    flex-direction: column;
+}
+
+.top {
+    width: 635px;
+    height: 112px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+}
+
+.subBox {
+    width: 635px;
+    height: 728px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+}
+
+.sBox {
+    width: 360px;
+    height: 690px;
+    background-color: white;
+}
+
+body {
+    background-color: #dbdbdb;
+}
+
+.title-text {
+    margin-top: 20px;
+    margin-bottom: 40px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.second-title {
+    margin-top: 10px;
+    margin-bottom: 8px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.check-text {
+    margin-top: 30px;
+    margin-bottom: 8px;
+    font-size: 15px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    width: 359px;
+    height: 50px;
+    background-color: #35c5f0;
+}
+
+.btu-font {
+    margin-top: 20px;
+    font-size: 17px;
+    font-weight: bold;
+    color: white;
+    border-radius: 3px;
+    border: none;
+}
+
+.underline {
+    margin-left: 5px;
+    text-decoration: underline;
+}
+
+#input {
+    margin-top: 0px;
+    margin-bottom: 20px;
+    width: 359px;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid;
+    border-color: #dbdbdb;
+}
+
+.logo {
+    width: 89.42px;
+    height: 31px;
+    padding-left: 20px;
+}
