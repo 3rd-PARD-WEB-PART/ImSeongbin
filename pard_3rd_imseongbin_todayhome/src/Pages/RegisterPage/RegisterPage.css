@@ -5,6 +5,7 @@
     height: 100vh;
     background-color: #EAEBEF;
     flex-direction: column;
+    overflow: auto;
 }
 
 .top {
@@ -88,7 +89,7 @@ button {
 
 .logo {
     width: 89.42px;
-    height: 31px;
+    height: 31  px;
     padding-left: 20px;
 }
 
