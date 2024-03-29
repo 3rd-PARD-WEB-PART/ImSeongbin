@@ -3,6 +3,12 @@ import React from 'react';
 import logo from '../pic/Logo.png';
 
 function RegisterPage() {
+    // useEffect(() => {
+    //     document.title = "      님의 공간에 오신 것을 환영합니다"
+
+    //     //document.getElementById("top-logo").src = "../pic/today.png";
+    // }, []);
+
     return (
         <div className='mBox'>
             <div className='top'>
