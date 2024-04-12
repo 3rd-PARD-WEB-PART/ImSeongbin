@@ -1,17 +1,21 @@
-# Todayhome Clone Coding
+# 오늘의 집 클론 코딩 3번째
 
 ### Features
 
 + Input fields for email, password, password confirmation and nickname.
 + Password requirments are mentioned
++ 프로필 페이지, 설정 페이지 구현
++ 라우터를 이용하여 각 페이지들 연결
 
 ### Installation
 
-No installation required. Simply include the component in your React Project.
+스타일 컴포넌트, 라우터 설치 필요
+
 
 ### Styling
 
 Styling for this component is provided throught the 'RegisterPage.css' file, which must be imported into the project.
+ProfilePage.js, EditProfile 등 styled component를 활용해서 스타일링함.
 
 ### Structure
 
