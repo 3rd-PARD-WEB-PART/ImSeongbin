@@ -1,8 +1,10 @@
 import './RegisterPage.css';
 import React from 'react';
 import logo from '../pic/Logo.png';
+import { useNavigate } from 'react-router-dom';
 
 function RegisterPage() {
+    const navigate = useNavigate();
     // useEffect(() => {
     //     document.title = "      님의 공간에 오신 것을 환영합니다"
 
@@ -47,7 +49,8 @@ function RegisterPage() {
                     placeholder='별명 (2~15자)'
                     />
 
-                    <button className='btu-font'>회원가입하기</button>
+                    <button className='btu-font' onClick={() => navigate('/profilePage')}>회원가입하기</button>
+
 
                     <p className='check-text'>이미 아이디가 있으신가요?<div className='underline'>로그인</div></p>
                 </div>
