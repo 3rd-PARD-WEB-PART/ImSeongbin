@@ -1,27 +1,47 @@
-# Todayhome Clone Coding
+# 오늘의 집 클론 코딩 3번째
 
-### Features
+이 프로젝트는 React와 Styled-Components를 사용하여 구현된 웹 애플리케이션입니다. 사용자는 회원가입, 프로필 보기 및 편집 등의 기능을 이용할 수 있습니다. 각 페이지는 반응형 디자인으로 구현되어 다양한 디바이스에서의 사용이 용이합니다.
 
-+ Input fields for email, password, password confirmation and nickname.
-+ Password requirments are mentioned
+## 시작하기
 
-### Installation
+이 프로젝트를 로컬 환경에서 실행하기 위한 기본적인 지침입니다.
 
-No installation required. Simply include the component in your React Project.
+### 필요 조건
 
-### Styling
+- npm
+- react
+- styled-component
+- router
 
-Styling for this component is provided throught the 'RegisterPage.css' file, which must be imported into the project.
+### 설치
 
-### Structure
+1. 프로젝트 클론:
 
-+ mBox: Main container for the registeration form.
-  + top: Container for the logo
-    + logo: Image representing the logo of the application
-  + subBox: Container for the registration form.
-    + sBox: Sub-container for the form elements.
-      + title-text: Title text for the registeration form.
-      + second-title: Subtitles for various input fields providing guidance to users.
-      + input: Input fields for email, password, password confirmation, and nickname.
-      + btu-font: Button for user registeration.
-      + check-text: Text indicating an option to navigate to the login page.
+git clone https://github.com/3rd-PARD-WEB-PART/ImSeongbin/tree/main/pard_3rd_imseongbin_todayhome
+
+
+이후 브라우저에서 `http://localhost:3000` 주소로 애플리케이션에 접속할 수 있습니다.
+
+## 구현된 기능
+
+### 회원가입
+
+사용자는 이메일, 비밀번호, 닉네임을 입력하여 회원가입을 할 수 있습니다. 회원가입 후 프로필 페이지로 자동으로 이동됩니다.
+
+### 프로필 페이지
+
+프로필 페이지에서는 사용자의 기본 정보와 함께 좋아요, 스크랩북, 쿠폰 등의 정보를 볼 수 있습니다. 또한, 프로필 편집 버튼을 통해 프로필 정보를 수정할 수 있습니다.
+
+### 프로필 편집
+
+프로필 편집 페이지에서는 사용자의 이메일, 닉네임, 홈페이지 주소, 성별, 생년월일, 프로필 이미지 및 한 줄 소개를 수정할 수 있습니다. 모든 변경사항은 프로필 페이지에 반영됩니다.
+
+## 기술 스택
+
+- React.js
+- Styled-Components
+- React Router
+
+## 개발자
+
+이 프로젝트는 임성빈에 의해 개발되었습니다.
