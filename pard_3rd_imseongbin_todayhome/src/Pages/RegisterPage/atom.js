@@ -1,15 +1,30 @@
 import { atom } from 'recoil';
 import profilePic from '../pic/프로필 이미지.png';
 
+// 영구 저장용 atom
 export const InfoSender = atom({
-    key: 'InfoSender', // 고유 키
-    default: { // 기본값 설정
-        email: { front: "webpart", back: "pard.com" },
-        nickname: "성빈IM",
-        homepage: "web-pard.com",
-        gender: "남성",
-        birthday: "2000-05-06",
-        image: profilePic,
-        intro: "안녕하세요 안녕하세요 웹파트 과제입니다."
-    }
+    key: 'InfoSender',
+    default: {
+        email: null,
+        nickname: null,
+        homepage: null,
+        gender: null,
+        birthday: null,
+        image: null,
+        intro: null
+    },
+    effects_UNSTABLE: [
+        ({ setSelf }) => {
+            const savedData = sessionStorage.getItem('InfoSender');
+            if (savedData) {
+                setSelf(JSON.parse(savedData));
+            }
+            return () => {
+                const currentValue = sessionStorage.getItem('InfoSender');
+                if (currentValue) {
+                    sessionStorage.setItem('InfoSender', JSON.stringify(currentValue));
+                }
+            };
+        }
+    ]
 });

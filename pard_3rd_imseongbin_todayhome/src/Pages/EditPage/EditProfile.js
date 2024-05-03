@@ -1,78 +1,62 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import profile from "../pic/프로필 이미지.png";
-import { useRecoilValue } from 'recoil';
-import { InfoSender } from '../RegisterPage/atom'; // InfoSender atom을 임포트
-import { useLocation } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import { InfoSender } from "../RegisterPage/atom";
 
 function EditProfile() {
-    const registrationData = useRecoilValue(InfoSender);
-    const location = useLocation();
-    const [info, setInfo] = useState(location.state || {
-        email: "",
-        nickname: "",
-        homepage: "",
-        gender: "",
-        birthday: "",
-        image: profile,
-        intro: ""
-    })
-
+    const [info, setInfo] = useRecoilState(InfoSender);
     const navigate = useNavigate();
     const input = useRef();
-
-    useEffect(() => {
-        // "수정하기" 버튼 클릭시 첫 번째 코드에서 받은 email과 nickname으로 업데이트
-        if (Object.keys(registrationData).length !== 0) {
-            setInfo({
-                ...info,
-                email: registrationData.email,
-                nickname: registrationData.nickname
-            });
-        }
-    }, [registrationData]); // registrationData가 변경될 때만 실행
 
     const onClickimg = () => {
         input.current.click();
     }
 
+    // 개별 정보 업데이트 함수
+    const handleInfoUpdate = (field, value) => {
+        setInfo(prev => ({ ...prev, [field]: value }));
+    }
+
+    // 각 필드별 핸들러 설정
     const setEmail = (e) => {
-        setInfo({...info, email: e.target.value});
+        handleInfoUpdate('email', e.target.value);
     }
 
     const setNickname = (e) => {
-        setInfo({...info, nickname: e.target.value});
+        handleInfoUpdate('nickname', e.target.value);
     }
 
     const setHomepage = (e) => {
-        setInfo({...info, homepage: e.target.value});
+        handleInfoUpdate('homepage', e.target.value);
     }
 
     const setGender = (e) => {
-        setInfo({...info, gender: e.target.value});
+        handleInfoUpdate('gender', e.target.value);
     }
 
     const setBirthday = (e) => {
-        setInfo({...info, birthday: e.target.value});
+        handleInfoUpdate('birthday', e.target.value);
     }
 
     const setImage = (e) => {
         const file = e.target.files[0];
-        if(file) {
+        if (file) {
             const imgUrl = URL.createObjectURL(file);
-            setInfo({...info, image: imgUrl});
+            handleInfoUpdate('image', imgUrl);
         }
     }
 
     const setIntro = (e) => {
-        setInfo({...info, intro: e.target.value});
+        handleInfoUpdate('intro', e.target.value);
     }
 
-    const setEditButton = (e) => {
-        console.log(info);
+    const setEditButton = () => {
         navigate("/profilePage");
-    }
+    };
+    
+    
 
     return(
         <>
