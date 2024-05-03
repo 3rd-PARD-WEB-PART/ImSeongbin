@@ -126,14 +126,17 @@ const Buttons = styled.div`
 `;
 
 const ProfileArea = styled.div`
-    width: 285;
-    height: 460.24px;
     display: flex;
     flex-direction: column;
+    width: 285px;
+    height: 460.24px;
+    flex-shirnk: 0;
     align-items: center;
-    border: 1px solid #dbdbdb;
+
     border-radius: 3px;
-    padding-top: 31px;
+    border: 1px solid #DBDBDB;
+    margin-left: 6px;
+    padding-top: 31.88px;
 `;
 
 const FaceIcon = styled.img`

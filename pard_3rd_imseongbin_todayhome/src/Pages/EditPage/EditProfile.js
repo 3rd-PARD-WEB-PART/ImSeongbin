@@ -5,8 +5,8 @@ import profile from "../pic/프로필 이미지.png";
 
 function EditProfile() {
     const [info, setInfo] = useState({
-        email: { front: "webpart", back: "pard.com" },
-        nickname: "임성빈",
+        email: "webpart@pard.com", // 여기를 변경
+        nickname: "성빈IM",
         homepage: "web-pard.com",
         gender: "남성",
         birthday: "2000-05-06",
@@ -15,68 +15,42 @@ function EditProfile() {
     });
 
     const navigate = useNavigate();
-
     const input = useRef();
 
     const onClickimg = () => {
         input.current.click();
     }
 
-    const setEmailFront = (e) => {
-        setInfo({...info,
-        email: {
-            ...info.email,
-            front: e.target.value
-        }})
-    }
-
-    const setEmailBack = (e) => {
-        setInfo({...info,
-        email: {
-            ...info.email,
-            back: e.target.value
-        }})
+    const setEmail = (e) => {
+        setInfo({...info, email: e.target.value}); // 여기를 변경
     }
 
     const setNickname = (e) => {
-        setInfo({...info,
-        nickname: e.target.value
-        })
+        setInfo({...info, nickname: e.target.value});
     }
 
     const setHomepage = (e) => {
-        setInfo({...info,
-        homepage: e.target.value
-        })
+        setInfo({...info, homepage: e.target.value});
     }
 
     const setGender = (e) => {
-        setInfo({...info,
-        gender: e.target.value
-        })
+        setInfo({...info, gender: e.target.value});
     }
 
     const setBirthday = (e) => {
-        setInfo({...info,
-        birthday: e.target.value
-        })
+        setInfo({...info, birthday: e.target.value});
     }
 
     const setImage = (e) => {
-        const file = e.target.file[0];
+        const file = e.target.files[0]; // 오타 수정
         if(file) {
             const imgUrl = URL.createObjectURL(file);
-            setInfo({
-                ...info,
-                image: imgUrl
-            })
+            setInfo({...info, image: imgUrl});
         }
     }
 
     const setIntro = (e) => {
-        setInfo({...info,
-        intro: e.target.value
-        })
+        setInfo({...info, intro: e.target.value});
     }
 
     const setEditButton = (e) => {
@@ -110,9 +84,7 @@ function EditProfile() {
                             </EmailBox>
                             <InputBox>
                                 <div>
-                                    <EnterEmail type="text" value={info.email.front} onChange={setEmailFront} />
-                                    @
-                                    <EnterEmail type="text" value={info.email.back} onChange={setEmailBack} />
+                                    <EnterNickname type="text" value={info.email} onChange={setEmail} />
                                 </div>
                                 이메일을 변경하시려면 운영자에게 이메일을 보내주세요.
                             </InputBox>
