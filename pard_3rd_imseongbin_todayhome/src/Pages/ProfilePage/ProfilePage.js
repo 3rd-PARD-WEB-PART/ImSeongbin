@@ -1,25 +1,24 @@
-import styled from 'styled-components';
+import React, { useState } from "react";
+import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 import Face from "../pic/프로필 아이콘.png";
 import scrap from "../pic/Scrap.png";
 import like from "../pic/Heart.png";
-import liked from "../pic/하트 아이콘.svg"
+import liked from "../pic/하트 아이콘.svg";
 import coupon from "../pic/Coupon.png";
+import MediaQuery from "react-responsive";
 
-
-
-function Profile () {
+function Profile() {
     const [isClicked, setIsClicked] = useState(false);
     const navigate = useNavigate();
 
     const onClickLikeButton = () => {
-        setIsClicked((isClicked) => (!isClicked));
-    }
+        setIsClicked(!isClicked);
+    };
 
     const onClickEdit = () => {
         navigate("/editProfile");
-    }
+    };
 
     return (
         <>
@@ -35,37 +34,110 @@ function Profile () {
                 <div>좋아요</div>
             </MenuBanner>
             <Body>
-                <ProfileArea>
-                    <FaceIcon src={Face} />
-                    <Word>
-                        <Name>성빈IM</Name>
-                        <Follow>
-                            <div>팔로워</div>
-                            <Count>0</Count>
-                            <div>팔로잉</div>
-                            <Count>0</Count>
-                        </Follow>
-                        <Setting onClick={onClickEdit}>설정</Setting>
-                    </Word>
-                    <Hr />
-                    <Buttons>
-                        <Button>
-                            <ButtonPic src={scrap} />
-                            <ButtonWord>스크랩북</ButtonWord>
-                            <Count2>0</Count2>
-                        </Button>
-                        <Button1>
-                            <ButtonPic src={isClicked ? liked: like} alt="하트 아이콘" onClick={onClickLikeButton} style={{width : "30px"}}/>
-                            <ButtonWord>좋아요</ButtonWord>
-                            <Count2>{isClicked? 1 : 0}</Count2>
-                        </Button1>
-                        <Button>
-                            <ButtonPic src={coupon} />
-                            <ButtonWord>내 쿠폰</ButtonWord>
-                            <Count2>0</Count2>
-                        </Button>
-                    </Buttons>
-                </ProfileArea>
+                {/* Laptop View */}
+                <MediaQuery minWidth={1024}>
+                    <ProfileArea>
+                        <FaceIcon src={Face} />
+                        <Word>
+                            <Name>성빈IM</Name>
+                            <Follow>
+                                <div>팔로워</div>
+                                <Count>0</Count>
+                                <div>팔로잉</div>
+                                <Count>0</Count>
+                            </Follow>
+                            <Setting onClick={onClickEdit}>설정</Setting>
+                        </Word>
+                        <Hr />
+                        <Buttons>
+                            <Button>
+                                <ButtonPic src={scrap} />
+                                <ButtonWord>스크랩북</ButtonWord>
+                                <Count2>0</Count2>
+                            </Button>
+                            <Button1>
+                                <ButtonPic src={isClicked ? liked : like} alt="하트 아이콘" onClick={onClickLikeButton} />
+                                <ButtonWord>좋아요</ButtonWord>
+                                <Count2>{isClicked ? 1 : 0}</Count2>
+                            </Button1>
+                            <Button>
+                                <ButtonPic src={coupon} />
+                                <ButtonWord>내 쿠폰</ButtonWord>
+                                <Count2>0</Count2>
+                            </Button>
+                        </Buttons>
+                    </ProfileArea>
+                </MediaQuery>
+                {/* Tablet View */}
+                <MediaQuery minWidth={768} maxWidth={1023}>
+                    <TabletDiv>
+                        <TopDiv>
+                            <FaceIcon src={Face} />
+                            <ProfileInfoDiv>
+                                <Name>성빈IM</Name>
+                                <Follow>
+                                    <div>팔로워</div>
+                                    <Count>0</Count>
+                                    <div>팔로잉</div>
+                                    <Count>0</Count>
+                                </Follow>
+                                <Setting onClick={onClickEdit}>설정</Setting>
+                            </ProfileInfoDiv>
+                        </TopDiv>
+                        <BottomDiv>
+                            <Buttons>
+                                <Button>
+                                    <ButtonPic src={scrap} />
+                                    <ButtonWord>스크랩북</ButtonWord>
+                                    <Count2>0</Count2>
+                                </Button>
+                                <Button1>
+                                    <ButtonPic src={isClicked ? liked : like} alt="하트 아이콘" onClick={onClickLikeButton} />
+                                    <ButtonWord>좋아요</ButtonWord>
+                                    <Count2>{isClicked ? 1 : 0}</Count2>
+                                </Button1>
+                                <Button>
+                                    <ButtonPic src={coupon} />
+                                    <ButtonWord>내 쿠폰</ButtonWord>
+                                    <Count2>0</Count2>
+                                </Button>
+                            </Buttons>
+                        </BottomDiv>
+                    </TabletDiv>
+                </MediaQuery>
+                {/* Mobile View */}
+                <MediaQuery maxWidth={767}>
+                    <MobileProfileArea>
+                        <FaceIcon src={Face} />
+                        <Word>
+                            <Name>성빈IM</Name>
+                            <Follow>
+                                <div>팔로워</div>
+                                <Count>0</Count>
+                                <div>팔로잉</div>
+                                <Count>0</Count>
+                            </Follow>
+                            <Setting onClick={onClickEdit}>설정</Setting>
+                        </Word>
+                        <Buttons>
+                            <Button>
+                                <ButtonPic src={scrap} />
+                                <ButtonWord>스크랩북</ButtonWord>
+                                <Count2>0</Count2>
+                            </Button>
+                            <Button1>
+                                <ButtonPic src={isClicked ? liked : like} onClick={onClickLikeButton} />
+                                <ButtonWord>좋아요</ButtonWord>
+                                <Count2>{isClicked ? 1 : 0}</Count2>
+                            </Button1>
+                            <Button>
+                                <ButtonPic src={coupon} />
+                                <ButtonWord>내 쿠폰</ButtonWord>
+                                <Count2>0</Count2>
+                            </Button>
+                        </Buttons>
+                    </MobileProfileArea>
+                </MediaQuery>
 
                 <div>
                     <div>
@@ -102,6 +174,18 @@ const MenuBanner = styled.div`
     gap: 51px;
     font-size: ${({ fontSize }) => fontSize}px;
     background-color: #FFFFFF;
+
+    // Laptop
+    @media (min-width: 1024px) {
+        font-size: 18px; // 노트북에서의 폰트 사이즈 증가
+    }
+
+    // Tablet
+    @media (max-width: 1023px) {
+        flex-direction: column;  // 태블릿에서는 세로 정렬
+        gap: 10px;
+        padding: 10px 0;  // 상하 패딩 추가
+    }
 `;
 
 const Sel = styled.span`
@@ -114,7 +198,13 @@ const Body = styled.div`
     justify-content: center;
     gap: 153px;
     margin-top: 30.88px;
-    background-color: #FFFFFF
+    background-color: #FFFFFF;
+
+    // Tablet
+    @media (max-width: 1023px) {
+        flex-direction: column;  // 태블릿에서는 세로로 정렬
+        gap: 50px;  // 간격 조정
+    }
 `;
 
 const Buttons = styled.div`
@@ -137,6 +227,13 @@ const ProfileArea = styled.div`
     border: 1px solid #DBDBDB;
     margin-left: 6px;
     padding-top: 31.88px;
+
+    // Tablet
+    @media (max-width: 1023px) {
+        width: 90%;  // 태블릿에서 너비 조정
+        margin: 20px auto;  // 자동 마진으로 중앙 정렬
+        padding-top: 20px;  // 패딩 조정
+    }
 `;
 
 const FaceIcon = styled.img`
@@ -251,6 +348,45 @@ const Count2 = styled.div`
     line-height: normal;
     text-align: center;
     margin-top: 5.98px;
+`;
+
+const TabletDiv =styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 1003px;
+    height: 310px;
+    border: 1px solid #EAEBEF;
+    margin-top: 32px;
+`;
+
+const TopDiv =styled.div`
+    display: flex ;
+    width: 948px;
+    height: 174px;
+    border-bottom: 1px solid #EAEBEF;
+    align-items: center;
+`;
+
+const ProfileInfoDiv =styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 130px;
+    margin-left: 20px;
+`;
+
+const BottomDiv =styled.div`
+    display: flex ;
+`;
+
+const MobileProfileArea =styled.div`
+    display: flex;
+    width: 813px;
+    height: 270px;
+    flex-direction: column;
+    border-bottom: 1px solid #EAEBEF;
 `;
 
 export default Profile;
