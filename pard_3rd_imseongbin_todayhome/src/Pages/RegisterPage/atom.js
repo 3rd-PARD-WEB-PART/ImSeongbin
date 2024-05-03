@@ -5,7 +5,7 @@ export const InfoSender = atom({
     key: 'InfoSender', // 고유 키
     default: { // 기본값 설정
         email: { front: "webpart", back: "pard.com" },
-        nickname: "임성빈",
+        nickname: "성빈IM",
         homepage: "web-pard.com",
         gender: "남성",
         birthday: "2000-05-06",

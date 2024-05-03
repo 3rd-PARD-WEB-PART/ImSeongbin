@@ -18,8 +18,13 @@ function Profile () {
     }
 
     const onClickEdit = () => {
-        navigate("/editProfile");
+        navigate("/editProfile", { state: { ...registrationData } }); // registrationData를 페이지 이동시 전달
     }
+    
+
+    // const onClickEdit = () => {
+    //     navigate("/editProfile");
+    // }
 
     return (
         <>

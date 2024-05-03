@@ -1,28 +1,44 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import profile from "../pic/프로필 이미지.png";
+import { useRecoilValue } from 'recoil';
+import { InfoSender } from '../RegisterPage/atom'; // InfoSender atom을 임포트
+import { useLocation } from "react-router-dom";
 
 function EditProfile() {
-    const [info, setInfo] = useState({
-        email: "webpart@pard.com", // 여기를 변경
-        nickname: "성빈IM",
-        homepage: "web-pard.com",
-        gender: "남성",
-        birthday: "2000-05-06",
+    const registrationData = useRecoilValue(InfoSender);
+    const location = useLocation();
+    const [info, setInfo] = useState(location.state || {
+        email: "",
+        nickname: "",
+        homepage: "",
+        gender: "",
+        birthday: "",
         image: profile,
-        intro: "안녕하세요 안녕하세요 웹파트 과제입니다."
-    });
+        intro: ""
+    })
 
     const navigate = useNavigate();
     const input = useRef();
+
+    useEffect(() => {
+        // "수정하기" 버튼 클릭시 첫 번째 코드에서 받은 email과 nickname으로 업데이트
+        if (Object.keys(registrationData).length !== 0) {
+            setInfo({
+                ...info,
+                email: registrationData.email,
+                nickname: registrationData.nickname
+            });
+        }
+    }, [registrationData]); // registrationData가 변경될 때만 실행
 
     const onClickimg = () => {
         input.current.click();
     }
 
     const setEmail = (e) => {
-        setInfo({...info, email: e.target.value}); // 여기를 변경
+        setInfo({...info, email: e.target.value});
     }
 
     const setNickname = (e) => {
@@ -42,7 +58,7 @@ function EditProfile() {
     }
 
     const setImage = (e) => {
-        const file = e.target.files[0]; // 오타 수정
+        const file = e.target.files[0];
         if(file) {
             const imgUrl = URL.createObjectURL(file);
             setInfo({...info, image: imgUrl});
