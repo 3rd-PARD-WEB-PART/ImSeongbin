@@ -10,6 +10,7 @@ function RegisterPage() {
     const [info, setInfo] = useRecoilState(InfoSender);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [passwordCheck, setPasswordCheck] = useState('');
     const [nickname, setNickname] = useState('');
 
     const handleRegistration = () => {
@@ -41,6 +42,14 @@ function RegisterPage() {
                         placeholder='비밀번호'
                         value={password}
                         onChange={e => setPassword(e.target.value)}
+                        className='input'
+                    />
+                    <p className='second-title'>비밀번호 확인</p>
+                    <input
+                        type='password'
+                        placeholder='비밀번호 확인'
+                        value={passwordCheck}
+                        onChange={e => setPasswordCheck(e.target.value)}
                         className='input'
                     />
                     <p className='second-title'>닉네임</p>
