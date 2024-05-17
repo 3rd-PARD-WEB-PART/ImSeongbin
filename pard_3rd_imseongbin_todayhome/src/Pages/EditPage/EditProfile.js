@@ -1,18 +1,45 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import profile from "../pic/프로필 이미지.png";
 import { useRecoilState } from "recoil";
 import { InfoSender } from "../RegisterPage/atom";
+import { getUserData, patchUserData } from "../../API/AXIOS";
 
 function EditProfile() {
     const [info, setInfo] = useRecoilState(InfoSender);
     const navigate = useNavigate();
     const input = useRef();
+    const [userInfo, setUserInfo] = useState();
 
     const onClickimg = () => {
         input.current.click();
     }
+
+    const id = 1;
+    const getUser = async (id) => {
+        try {
+            const userData = await getUserData(id); // id 사용
+            // setUserInfo(userData);
+            // userInfo에서 필요한 필드를 가져와서 Recoil 상태에 설정
+            setInfo({
+                email: userData.data.email,
+                nickname: userData.data.nickname,
+                homepage: userData.data.homepage,
+                gender: userData.data.gender,
+                birthday: userData.data.birthday,
+                image: userData.data.image,
+                intro: userData.data.intro
+            });
+            console.log(userData.data);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    useEffect(() => {
+        getUser(id);
+    }, [])
 
     // 개별 정보 업데이트 함수
     const handleInfoUpdate = (field, value) => {
@@ -51,12 +78,16 @@ function EditProfile() {
     const setIntro = (e) => {
         handleInfoUpdate('intro', e.target.value);
     }
-
-    const setEditButton = () => {
-        navigate("/profilePage");
+    
+    const setEditButton = async () => {
+        try {
+            await patchUserData(info, id); // 수정된 데이터를 서버에 저장
+            await getUser(id); // 서버로부터 데이터를 다시 가져와서 상태 업데이트
+            navigate("/profilePage"); // 프로필 페이지로 이동
+        } catch (error) {
+            console.error(error);
+        }
     };
-    
-    
 
     return(
         <>

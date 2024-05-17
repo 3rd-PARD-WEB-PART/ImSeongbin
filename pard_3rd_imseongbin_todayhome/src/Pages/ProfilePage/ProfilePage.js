@@ -9,8 +9,9 @@ import coupon from "../pic/Coupon.png";
 import MediaQuery from "react-responsive";
 import { useRecoilValue } from 'recoil';
 import { InfoSender } from "../RegisterPage/atom";
+import { getUserData, patchUserData } from "../../API/AXIOS";
 
-function Profile() {
+const Profile = () => {
     const Info = useRecoilValue(InfoSender);
     console.log(InfoSender);
 
